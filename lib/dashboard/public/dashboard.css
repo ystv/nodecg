@@ -125,15 +125,19 @@ ncg-dashboard-panel iframe {
 }
 .graphic {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
 .graphic:not(:last-child) {
-  margin-bottom: 6px;
+  margin-bottom: 16px;
+}
+.graphic-resolution {
+  flex-grow: 1;
 }
 .graphic paper-button {
   white-space: nowrap;
   flex-shrink: 0;
+  display: flex;
+  align-itemcs: center;
 }
 .assets-divider {
   box-sizing: border-box;

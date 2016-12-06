@@ -8,10 +8,25 @@ each bundle in bundles
 		paper-card.ncg-card(heading=bundle.name)
 			.card-content.layout.vertical
 				each graphic in bundle.graphics
-					.graphic
-						div(style='display: flex; flex-direction: column;')
-							a(href=graphic.url, target='_blank')=graphic.url
-							span #{graphic.width}x#{graphic.height}
-						paper-button.js-copy(data-copy-type='graphic')
-							iron-icon(icon='icons:content-copy')
-							| &ensp;Copy URL
+					.graphic(data-graphic-url="#{graphic.url}" data-bundle-name="#{bundle.name}")
+						a(href=graphic.url, target='_blank')=graphic.url
+						div(style='display: flex; flex-direction: row;')
+							span.graphic-resolution #{graphic.width}x#{graphic.height}
+							paper-button.js-refresh(raised)
+								iron-icon(icon='icons:refresh')
+								| &ensp;Force Refresh
+							paper-button.js-copy(raised, data-copy-type='graphic')
+								iron-icon(icon='icons:content-copy')
+								| &ensp;Copy URL
+
+paper-dialog#confirmGraphicRefreshDialog(with-backdrop)
+	h2 Confirm Graphic Refresh
+	div
+		span.text-warning.paper-font-body1
+			| Are you sure you wish to refresh this graphic?:<br/>
+		code.paper-font-code1(style="margin-left: 1em;")
+		p.text-warning.paper-font-body1
+			| <br/>Clicking "<b>Yes, Refresh</b>" will cause <b>all open instances</b> of this graphic to be immediately refreshed.
+	.buttons
+		paper-button(dialog-confirm) Yes, Refresh
+		paper-button(dialog-dismiss) No, Cancel
