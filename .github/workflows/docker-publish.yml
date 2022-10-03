@@ -2,7 +2,7 @@ name: Docker Image
 
 on:
   push:
-    branches: [ "master", "ystv**" ]
+    branches: [ "master", "latest", "ystv**" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
 
